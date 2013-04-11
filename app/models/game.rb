@@ -255,7 +255,7 @@ class Game < BaseModel
         params.merge! :sides_kind_eq => 'Competitive'
       end
 
-      group('games.id').meta_search params
+      group(column_list).meta_search params
     end
   end
 

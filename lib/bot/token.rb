@@ -5,7 +5,7 @@ module Bot
     def deliver
       return [false, 'Already registered'] if user_exists? @nick
 
-      Timeout.timeout(10) do
+      Timeout.timeout(30) do
         connect_and do
           user = find_user @nick, read
           read # server welcome message

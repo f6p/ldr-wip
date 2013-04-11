@@ -13,7 +13,7 @@ module Replay
     end
 
     def initialize replay
-      @nodes  = Timeout.timeout(300) { Weskit::WML::Parser.uri replay, :simple }
+      @nodes  = Timeout.timeout(30) { Weskit::WML::Parser.uri replay, :simple }
       @replay = replay
     rescue SocketError, TimeoutError
       raise 'Replay could not be downloaded.'

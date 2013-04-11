@@ -1,0 +1,62 @@
+=aside-note
+  :color darken($default-color, $color-step * 2)
+  :font-size .8em
+
+  img
+    +border-radius($input-radius)
+    :margin-right .6em
+    :vertical-align middle
+
+=button($color)
+  +background-image(linear-gradient(top center, lighten($color, $color-step), $color, darken($color, $color-step)))
+  +border-radius($input-radius)
+  +inline-block
+  +single-box-shadow(lighten($default-background, $color-step * 2))
+  +single-text-shadow(lighten($color, $color-step * 2))
+  :background-color $color
+  :border none
+  :box-sizing content-box
+  :color darken($color, $color-step * 4) !important
+  :cursor pointer
+  :line-height normal
+  :padding $input-radius * 2 $input-radius * 6
+  :text-decoration none
+
+=rounded-block
+  +border-radius
+  :border none
+  :margin-bottom 1em
+  :padding 1em
+
+=default-block
+  +rounded-block
+  :background-color rgba($default-background, .75)
+  :color $default-color
+
+=error-block
+  +rounded-block
+  :background-color rgba($error-background, .75)
+  :color $error-color
+
+=notice-block
+  +rounded-block
+  :background-color rgba($notice-background, .75)
+  :color $notice-color
+
+=triangle($size, $color, $direction)
+  :height 0
+  :width 0
+
+  @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left)
+    :border-color transparent
+    :border-style solid
+    :border-width $size / 2
+
+    @if $direction == up
+      :border-bottom-color $color
+    @else if $direction == right
+      :border-left-color $color
+    @else if $direction == down
+      :border-top-color $color
+    @else if $direction == left
+      :border-right-color $color

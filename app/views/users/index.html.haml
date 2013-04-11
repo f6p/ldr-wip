@@ -1,0 +1,28 @@
+- title 'Ladder Standings'
+
+= form_for @search, :url => users_path, :html => {:class => :search, :method => :get} do |f|
+  %fieldset
+    = f.label :player_nick_like, 'Player'
+    = f.autocomplete_field :player_nick_like, autocomplete_users_path
+
+    = f.label :created_at_gte, 'Active from'
+    = f.date_select :created_at_gte, :include_blank => true
+
+    = f.label :created_at_lte, 'Active to'
+    = f.date_select :created_at_lte, :include_blank => true
+
+    = f.label :player_country_eq, 'Country'
+    = f.select :player_country_eq, Country.reverse, :include_blank => true
+
+  %fieldset
+    = f.submit 'Search'
+    = link_to 'Reset', games_path, :class => 'reset'
+
+- unless @sides.empty?
+  %ul.standings
+    - @sides.each_with_index do |side, index|
+      = standings_item index do
+        = avatar side.player, 50
+        = index + 1
+        = nick side.player
+        = side.visible_rating

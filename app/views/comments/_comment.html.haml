@@ -1,0 +1,11 @@
+%section
+  %ul.aside
+    %li
+      = gravatar_image comment.author, 25
+      = link_to_object comment.author
+    %li= ago_in_words 'posted', comment.created_at
+    - if can? :manage, comment
+      %li= link_to_destroy_comment comment
+      %li= link_to_edit_comment comment
+
+  .content= textile comment.content

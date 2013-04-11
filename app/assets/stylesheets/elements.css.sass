@@ -1,0 +1,126 @@
+@import 'config'
+
+a
+  :color $default-link
+  :text-decoration none
+
+  &:hover
+    :text-decoration underline
+
+body
+  :margin 0
+
+header > div, footer
+  +container
+
+header
+  :color $header-color
+  :background-color $header-background
+
+  h1
+    +inline-block
+    :margin 0 0
+
+    a
+      :color inherit
+
+      &:hover
+        :text-decoration none
+
+    img
+      :height 40px
+      :margin-top 5px
+
+  .site, .user
+    +inline-block
+    +reset-box-model
+    :list-style none
+
+    li
+      +inline-block
+      :margin-left $link-spacing
+
+
+  .user
+    :float right
+    :margin-top 1em
+
+section.content
+  +container
+
+  article.content
+    +default-block
+
+    h1.title, *:first-child
+      :margin-top 0
+
+    img
+      :max-width 100%
+
+    ul.info
+      +aside-note
+      +comma-delimited-list
+
+  fieldset
+    +default-block
+
+    &.single label
+      :width auto !important
+
+    input, label, textarea
+      :margin $input-radius
+      :padding $input-radius
+
+    input, textarea
+      +border-radius($input-radius)
+      :border none
+      :float left
+
+      &[type=submit]
+        +button($default-button)
+
+      &[type=submit] + a
+        +button($cancel-button)
+        :margin $input-radius
+
+      &:focus
+        :background-color lighten($default-button, $color-step)
+
+      &.long
+        :width 42em
+
+    input[type=checkbox]
+      :margin-top .5em
+
+    label
+      :color $default-color
+      :clear left
+      :display block
+      :float left
+      :width 12em
+
+    select
+      :margin $input-radius
+      :float left
+
+    textarea
+      :resize none
+
+  form + div
+    +rounded-block
+    :background-color rgba($default-background, .5)
+
+    a
+      +inline-block
+      :margin-right $link-spacing
+
+footer > div
+  +rounded-block
+  :background-color rgba($default-background, .5)
+
+  ul
+    +inline-list
+    :float right
+
+    li
+      :padding-left $link-spacing

@@ -1,0 +1,151 @@
+@import 'config'
+
+.games
+  article
+    +default-block
+    :padding 0
+
+    h1
+      :font-size 1.5em
+      :padding-top .5em
+      :text-align center
+
+    h1 + aside
+      :margin -1.2em 0 .33em 0
+
+    section
+      +border-radius
+
+      div, img
+        :margin-bottom .5em
+
+      div
+        +inline-block
+        :height 100px
+        :max-width 16em
+        :padding 0 .5em
+
+        p, ul
+          :font-size .9em
+          :margin-top -1em !important
+
+        p
+          :color darken($default-color, $color-step * 2)
+
+        ul
+          +reset-box-model
+          :display block
+          :font-weight bold
+
+          li
+            :display inline
+
+            &:after
+              :content ', '
+
+            &:last-child:after
+              :content ''
+
+      img
+        +border-radius
+        :vertical-align middle
+
+    .left
+      +span-columns(5)
+
+      section
+        :text-align right
+
+    .vs
+      +span-columns(2)
+      :font-size 2em
+      :padding-top 1em
+      :text-align center
+
+    .right
+      +span-columns(5 omega)
+
+      section
+        :text-align left
+
+    aside
+      :clear both
+      :padding .75em
+      :text-align center
+
+      ul
+        +comma-delimited-list
+        :display block
+
+  .chat
+    +default-block
+    :font-size .8em
+    :margin-bottom 1.3em
+
+    td
+      :padding-right .8em
+
+    .observer
+      td:first-child:before, td:last-child:after
+        :content '*'
+
+  .hints
+    +default-block
+    :font-size .8em
+
+    p
+      :margin 1.2em
+
+    p:before
+      :content '*'
+
+    p + p:before
+      :content '**'
+
+  .options
+    input[type=text]
+      :width 16em
+
+  .search
+    h2
+      :margin .4em 0
+
+    input, label, select
+      +inline-block
+      :float none
+
+    input
+      :width 8.4em
+
+    label
+      :width auto
+
+  .suggestions
+    +default-block
+
+    a
+      :margin-right 0
+
+      &:after
+        :content ', '
+
+      &:last-child
+        &:after
+          :content '. '
+
+    p, ul
+      :margin-bottom 0
+
+    p
+      +aside-note
+      :margin 0
+
+      img
+        :vertical-align middle
+
+    p.wait
+      :margin-top 1em
+
+    ul
+      :font-size .8em
+      :padding-left 1.2em

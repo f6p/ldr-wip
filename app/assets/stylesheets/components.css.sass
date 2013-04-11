@@ -1,0 +1,109 @@
+@import 'config'
+
+.alert, .error_explanation
+  +error-block
+
+.alert, .notice
+  :font-weight bold
+
+.deleted
+  :color $error-background
+  :text-transform uppercase
+
+.error_explanation
+  h1
+    +reset-box-model
+    :font-size 1.2em
+
+  ul
+    :margin
+      :bottom 0
+      :top .6em
+
+.field_with_errors label
+  :color $error-background !important
+
+.github
+  :border none
+  :position absolute
+  :right 0
+  :top 3.25em
+
+.notice
+  +notice-block
+n
+.options
+  +default-block
+
+  a
+    +button($default-button)
+
+    &.admin
+      +button($admin-button)
+
+    &.revoke
+      +button($revoke-button)
+
+  a, input
+    :margin-right .6em
+
+  form
+    +inline-block
+
+    input
+      +border-radius($input-radius)
+
+      &[type=submit]
+        +button($default-button)
+
+      &[type=text]
+        :border 0
+        :padding .3em
+        :vertical-align middle
+
+      &:focus
+        :background-color lighten($default-button, $color-step)
+
+.pagination
+  +rounded-block
+  :background-color rgba($default-background, .5)
+  :color $default-color
+
+  .current
+    :font-style normal
+
+  a
+    :margin-right 0 !important
+
+.red
+  :color $wesnoth-red
+
+.blue
+  :color $wesnoth-blue
+
+.green
+  :color $wesnoth-green
+
+.purple
+  :color $wesnoth-purple
+
+.black
+  :color $wesnoth-black
+
+.brown
+  :color $wesnoth-brown
+
+.orange
+  :color $wesnoth-orange
+
+.white
+  :color $wesnoth-white
+
+.teal
+  :color $wesnoth-teal
+
+.observer, .server
+  :color darken($default-color, $color-step * 2)
+
+.server
+  :font-style italic

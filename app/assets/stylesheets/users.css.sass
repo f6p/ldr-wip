@@ -1,0 +1,71 @@
+@import 'config'
+
+.users
+  article
+    +default-block
+
+    div, img
+      +inline-block
+
+    div
+      :margin-left 1em
+
+      ul
+        +comma-delimited-list
+        :color darken($default-color, 50%)
+        :display block !important
+        :margin .33em 0 !important
+
+        img
+          +border-radius(0)
+
+        strong
+          :color $default-color
+          :font-weight normal
+
+    h1
+      :margin 0
+
+    img
+      +border-radius
+
+  form
+    p
+      :float left
+      :font-size .8em
+      :margin .6em
+
+    .multiline
+      :margin-top 0
+
+  section
+    +default-block
+
+    &.notifications ul
+      +reset-box-model
+      +reset-list-style
+
+      li
+        :font-size .8em
+        :line-height 1.4em
+
+  .search
+    input[type=text]
+      :width 14.5em
+
+  .standings
+    +inline-list
+
+    li
+      +default-block
+      +inline-block
+      :margin-right 1em
+      :width 16.8em
+
+      img
+        +border-radius
+        :margin-right .3em
+        :vertical-align middle
+
+    .last
+      :margin-right 0

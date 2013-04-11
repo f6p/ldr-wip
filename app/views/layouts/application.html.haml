@@ -1,0 +1,41 @@
+!!!
+%html
+  %head
+    %title= @title
+    = background_image
+    = csrf_meta_tags
+    = javascript_include_tag 'application'
+    = stylesheet_link_tag 'application', :media => 'all'
+    = yield :head
+
+  %body
+    %header
+      %div
+        %h1= logo
+        %ul.site
+          - if current_user.try :admin?
+            %li= link_to 'Admin', admin_root_path
+          %li= link_to 'Games', games_path
+          %li= link_to 'Standings', users_path
+        %ul.user
+          - if user_signed_in?
+            %li= link_to_object current_user
+            %li= link_to 'Report', new_game_path
+            %li= link_to 'Sign Out', destroy_user_session_path, :method => :delete
+          - else
+            %li= link_to 'Sign In', new_user_session_path
+            %li= link_to 'Sign Up', new_user_path
+
+    = page_content do
+      %h1= @title
+      - if alert
+        .alert= alert
+      - if notice
+        .notice= notice
+      = yield
+
+    %footer
+      %div
+        = link_to 'Top', '#top'
+        = link_to_github
+        = menu_pages_list

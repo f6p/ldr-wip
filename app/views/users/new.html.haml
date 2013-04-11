@@ -1,0 +1,39 @@
+- title 'Sign Up'
+
+= form_for(@user, :method => :post, :url => users_path) do |f|
+  = error_explanation @user
+
+  %fieldset
+    = f.label      :nick
+    = f.text_field :nick
+    %p Only nicks registered on official forums can be submitted.
+
+    = f.label      :token
+    = f.text_field :token
+    %p#token
+      Fill in nick first, then log-in into
+      = LdrWip::Application.config.wesnoth_version
+      lobby and
+      = link_to('Click', token_path, :remote => true) + '.'
+
+    = f.label       :email
+    = f.email_field :email
+    %p
+      Optional but required for password recovery and
+      = link_to_gravatar + '.'
+
+    = f.label          :password
+    = f.password_field :password
+    %p Should have at least six characters.
+
+    = f.label          :password_confirmation
+    = f.password_field :password_confirmation
+
+    = f.label     :rating_import, 'Import rating'
+    = f.check_box :rating_import
+    %p Check if you want to import rating from old ladder.
+
+  %fieldset
+    = f.submit 'Sign Up'
+
+= render 'devise/shared/links'

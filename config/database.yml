@@ -1,0 +1,40 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: ldr-wip-development
+  pool: 5
+  username: user
+  password:
+
+  # Connect on a TCP socket. Omitted by default since the client uses a
+  # domain socket that doesn't need configuration. Windows does not have
+  # domain sockets, so uncomment these lines.
+  #host: localhost
+  #port: 5432
+
+  # Schema search path. The server defaults to $user,public
+  #schema_search_path: myapp,sharedapp,public
+
+  # Minimum log levels, in increasing order:
+  #   debug5, debug4, debug3, debug2, debug1,
+  #   log, notice, warning, error, fatal, and panic
+  # The server defaults to notice.
+  #min_messages: warning
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: ldr-wip-test
+  pool: 5
+  username: user
+  password:
+
+production:
+  adapter:  postgresql
+  encoding: unicode
+  pool:     5
+  database: <%= ENV["OPENSHIFT_APP_NAME"] %>
+  host:     <%= ENV["OPENSHIFT_POSTGRESQL_DB_HOST"] %>
+  port:     <%= ENV["OPENSHIFT_POSTGRESQL_DB_PORT"] %>
+  username: <%= ENV["OPENSHIFT_POSTGRESQL_DB_USERNAME"] %>
+  password: <%= ENV["OPENSHIFT_POSTGRESQL_DB_PASSWORD"] %>

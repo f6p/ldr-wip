@@ -1,0 +1,10 @@
+- unless @games.empty?
+  %ul
+    - for game in @games
+      %li
+        = game.name
+        Report:
+        - with_options :against => game.link do |link|
+          = link_to 'Win',  link.games_path(:result => 1.0), :method => :post
+          = link_to 'Draw', link.games_path(:result => 0.5), :method => :post
+          = link_to 'Loss', link.games_path(:result => 0.0), :method => :post

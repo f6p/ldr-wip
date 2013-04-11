@@ -1,0 +1,16 @@
+%div
+  %h2= nick side.player
+
+  - if side.game.parsed?
+    %ul{:class => side.color}
+      %li
+        = side.visible_rating
+        = rating_delta side if side.competitive?
+      %li= side.faction
+      %li= side.leader
+
+  - else
+    %ul
+      %li= side.visible_rating
+      - if side.competitive?
+        = rating_delta side

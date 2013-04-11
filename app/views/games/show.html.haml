@@ -1,0 +1,19 @@
+- title 'Game Details'
+
+= render @game
+
+= render 'options'
+
+- if @game.comments.any?
+  %section.discussion
+    = render @game.comments
+
+= render 'comments/form'
+
+- if @game.parsed?
+  %section.chat
+    %table
+      - for entry in @game.chat
+        = game_chat_row entry do
+          %td= entry[:speaker]
+          %td= entry[:message]

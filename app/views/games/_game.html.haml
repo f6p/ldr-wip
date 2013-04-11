@@ -1,0 +1,31 @@
+%article
+  %h1= game_title_link game
+
+  - if game.parsed?
+    %aside
+      %ul.info
+        %li= game_replay_title game
+        %li= game.era
+        %li= link_to_replay game
+
+  .left
+    - for side in game.privileged_sides
+      %section
+        = render side
+        = avatar side.player
+
+  .vs
+    VS
+
+  .right
+    - for side in game.unprivileged_sides
+      %section
+        = avatar side.player
+        = render side
+
+  %aside
+    %ul.info
+      %li= game.kind
+      %li= ago_in_words 'Reported', game.created_at
+      - unless game.comments.size.zero?
+        %li= link_to pluralize(game.comments.size, 'comment'), game

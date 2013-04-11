@@ -1,0 +1,17 @@
+- content_for :head do
+  = auto_discovery_link_tag :atom
+
+- title 'Recent News'
+
+= will_paginate @news
+
+- for news in @news
+  %article.content
+    %h1.title= link_to_object news
+    = textile news.body
+    %ul.info
+      %li= ago_in_words 'Created', news.created_at
+      %li= pluralize news.comments.size, 'comments'
+      %li= link_to 'Show', news
+
+= will_paginate @news

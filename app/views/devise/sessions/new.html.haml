@@ -1,0 +1,21 @@
+- title 'Sign In'
+
+.alert
+  All previously registered accounts have to be registered once more. Reported games are still there.
+
+= devise_form(session_path resource_name) do |f|
+  %fieldset
+    = f.label      :nick
+    = f.text_field :nick
+
+    = f.label          :password
+    = f.password_field :password
+
+    - if devise_mapping.rememberable?
+      = f.label     :remember_me
+      = f.check_box :remember_me
+
+  %fieldset
+    = f.submit 'Sign In'
+
+= render 'devise/shared/links'

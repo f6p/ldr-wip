@@ -1,0 +1,15 @@
+- if user_signed_in?
+  = form_for [@commentable, @comment] do |f|
+    = error_explanation @comment
+
+    %fieldset.add_comment
+      = f.text_area :content, :size => '45x15'
+
+      %p
+        = link_to_textile
+        formatting allowed
+
+    %fieldset
+      = f.submit 'Post Comment'
+      - unless @comment.new_record?
+        = link_to 'Cancel', @commentable

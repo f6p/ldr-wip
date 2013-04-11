@@ -1,0 +1,14 @@
+- if user_signed_in? or manageable? @game
+  %section.options
+    - if manageable? @game
+      - if can? :manage, @game
+        - unless @game.parsed?
+          = render 'parse_form'
+        - unless @game.revoked?
+          = link_to 'Revoke Game', revoke_game_path(@game), :method => :post, :confirm => 'Revoke Game?', :class => :revoke
+
+      - if current_user.try :admin?
+        = link_to_admin_panel admin_game_path(@game)
+
+    - if user_signed_in? and not @game.issue
+      = link_to 'Request Support', game_issue_path(@game), :method => :post, :confirm => 'Do you need admin support here?'

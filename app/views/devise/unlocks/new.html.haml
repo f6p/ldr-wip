@@ -1,0 +1,13 @@
+- title 'Resend Unlock Instructions'
+
+= devise_form(unlock_path resource_name) do |f|
+  = devise_error_messages!
+
+  %fieldset.single
+    = f.label       :email
+    = f.email_field :email
+
+  %fieldset
+    = f.submit 'Resend Unlock Instructions'
+
+= render 'devise/shared/links'

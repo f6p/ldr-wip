@@ -1,0 +1,38 @@
+- title 'Report Game'
+
+= form_tag @game do |f|
+  = error_explanation @game
+
+  %fieldset
+    = label_tag  :result
+    = select_tag :result, options_for_select(Game::RESULTS, params[:result])
+
+    = label_tag              :against, 'Player or Replay'
+    = autocomplete_field_tag :against, params[:against], autocomplete_users_path, :class => :long
+
+  %fieldset
+    = submit_tag 'Report Game'
+
+.suggestions
+  %p
+    Archives:
+    = archive_link 'Today', Time.now
+    = archive_link 'Yesterday', 1.day.ago
+    = archive_link 'Directory Index'
+
+  %p.wait
+    = image_tag 'ajax.gif', :alt => ''
+    Loading suggestions...
+
+.hints
+  %p
+    You can report game by providing registered opponents nick or link to replay.
+    If you will report by nick replay can still be submitted at latter time. In order
+    to report game other than 1vs1 and/or vs unregisterd player/s you have to report
+    by replay. Replays from both archive and old ladder are supported.
+
+  %p
+    If you report vs unregistered player/s who are registered on old ladder their
+    ratings will be imported before score calculation otherwise their rating will
+    be set to default. Unregistered players are always considered to be casual so
+    games vs them will be casual as well.

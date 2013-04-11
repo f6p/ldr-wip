@@ -1,0 +1,12 @@
+- content_for :head do
+  = auto_discovery_link_tag :atom
+
+- title 'Game History'
+
+= render 'search'
+
+= will_paginate @games
+
+= render @games
+
+= will_paginate @games

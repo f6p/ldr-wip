@@ -1,0 +1,10 @@
+- title @page
+
+%article.content
+  = textile @page.body
+
+  %ul.info
+    %li= ago_in_words 'Updated', @page.updated_at
+
+- if current_user.try :admin?
+  .options= link_to 'Admin Actions', admin_page_path(@page), :class => :admin

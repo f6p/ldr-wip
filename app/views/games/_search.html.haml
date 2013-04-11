@@ -1,0 +1,21 @@
+= form_for @search, :url => games_path, :html => {:class => :search, :method => :get} do |f|
+  %fieldset
+    %h2 Game
+    = f.select :version_eq, Game.distinct(:version), :include_blank => true
+    = f.select :kind_eq, Game.distinct(:kind), :include_blank => true
+    = f.autocomplete_field :map_eq, autocomplete_map_games_path, :placeholder => 'Map'
+    = f.text_field :title_like, :placeholder => 'Title'
+    = f.text_field :turns_gte,  :placeholder => 'Turns from'
+    = f.text_field :turns_lte,  :placeholder => 'Turns to'
+
+    %h2 Side
+    = f.select :sides_number_eq, side_for_select, :include_blank => true
+    = f.autocomplete_field :sides_player_nick_eq, autocomplete_users_path, :placeholder => 'Player'
+    = f.autocomplete_field :sides_faction_eq, autocomplete_faction_games_path, :placeholder => 'Faction'
+    = f.autocomplete_field :sides_leader_eq, autocomplete_leader_games_path, :placeholder => 'Leader'
+    = f.text_field :sides_rating_gte, :placeholder => 'Rating from'
+    = f.text_field :sides_rating_lte, :placeholder => 'Rating to'
+
+  %fieldset
+    = f.submit 'Search'
+    = link_to 'Reset', games_path, :class => 'reset'

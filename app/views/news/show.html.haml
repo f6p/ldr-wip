@@ -10,7 +10,7 @@
 
 - if user_signed_in? or current_user.try :admin?
   .options
-    = link_to 'Admin Actions', admin_news_path(@news)
+    = link_to 'Admin Actions', admin_news_path(@news), :class => 'admin'
     - unless @news.issue
       = link_to 'Request Support', news_issue_path(@news), :method => :post, :confirm => 'Do you need admin support here?'
 

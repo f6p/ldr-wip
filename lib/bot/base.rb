@@ -12,7 +12,7 @@ module Bot
     end
 
     def user_exists? nick
-      User.find_active(nick) ? true : false
+      User.find_registered(nick) ? true : false
     rescue
       false
     end

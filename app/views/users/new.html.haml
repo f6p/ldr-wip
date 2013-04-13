@@ -3,6 +3,9 @@
 = form_for(@user, :method => :post, :url => users_path) do |f|
   = error_explanation @user
 
+  %noscript
+    .alert Please enable JavaScript support. This page dosn't work withot it.
+
   %fieldset
     = f.label      :nick
     = f.text_field :nick

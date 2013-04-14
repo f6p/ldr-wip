@@ -2,16 +2,14 @@ require 'cgi'
 
 module TextileHelper
   def textile string
-    RedCloth.new(escape string).to_html.html_safe
+    str = RedCloth.new(string)
+    str.filter_html = true
+    str.to_html.html_safe
   end
 
   def textile_as_plain string
-    RedCloth.new(escape string).to_plain
-  end
-
-  private
-
-  def escape text
-    CGI.escapeHTML text
+    str = RedCloth.new(string)
+    str.filter_html = true
+    str.to_plain
   end
 end

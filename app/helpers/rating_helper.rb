@@ -14,4 +14,9 @@ module RatingHelper
     return object.visible_rating unless object.competitive?
     "#{object.visible_rating} #{interval object}"
   end
+
+  def side_rating side
+    return side.visible_rating unless side.competitive?
+    "#{side.visible_rating} #{rating_delta side}"
+  end
 end

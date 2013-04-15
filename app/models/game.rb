@@ -152,7 +152,7 @@ class Game < BaseModel
     self.revoked_by = user
     self.revoked = true
 
-    result = Game.transaction do
+    Game.transaction do
       sides.each &:revoke
       save!
     end
@@ -162,7 +162,7 @@ class Game < BaseModel
       list.each { |o| o.notify revoke_notification }
     end
 
-    result
+    true
   end
 
   def teams

@@ -51,6 +51,7 @@ class GamesController < ApplicationController
 
   def parse
     @game  = Game.find params[:id]
+    authorize! :parse, @game
 
     begin
       @game.apply Replay::LadderGame.new params[:replay]
@@ -62,6 +63,7 @@ class GamesController < ApplicationController
 
   def revoke
     @game = Game.find params[:id]
+    authorize! :revoke, @game
 
     @game.revoke current_user
     redirect_to @game, :notice => 'Game was successfully revoked.'

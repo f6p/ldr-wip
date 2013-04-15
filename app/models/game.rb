@@ -147,6 +147,8 @@ class Game < BaseModel
   end
 
   def revoke user
+    return false if revoked?
+
     self.revoked_by = user
     self.revoked = true
 

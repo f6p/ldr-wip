@@ -9,6 +9,8 @@ LdrWip::Application.configure do
   }
   ActionMailer::Base.delivery_method = :smtp
 
+  config.action_mailer.default_url_options = {:host => 'www.lddr.pl'}
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests

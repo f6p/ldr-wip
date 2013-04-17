@@ -56,8 +56,7 @@ class GamesController < ApplicationController
     begin
       @game.apply Replay::LadderGame.new params[:replay]
       redirect_to @game, :notice => 'Replay was successfully processed.'
-    rescue => error
-      logger.warn "Parse Error: #{error} for: #{params[:replay]}"
+    rescue
       redirect_to @game, :alert => 'Replay could not be processed.'
     end
   end

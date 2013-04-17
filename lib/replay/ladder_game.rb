@@ -11,5 +11,12 @@ module Replay
     def sides
       @sides ||= playable_sides.collect { |s| Replay::LadderSide.new self, s }
     end
+
+    private
+
+    def raise_parser_error replay, error
+      Rails.logger.warn "#{Time.now} - Parse Error - #{error} (#{replay})"
+      super
+    end
   end
 end

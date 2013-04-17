@@ -13,14 +13,11 @@ module Replay
     end
 
     def initialize replay
-      replay.strip!
-
-      @nodes  = Timeout.timeout(30) { Weskit::WML::Parser.uri replay, :simple }
-      @replay = replay
+      load replay
     rescue SocketError, TimeoutError
-      raise 'Replay could not be downloaded.'
-    rescue
-      raise 'Replay could not be parsed.'
+      raise_connection_error
+    rescue => error
+      raise_parser_error replay, error
     end
 
     def hash_without_sides
@@ -96,8 +93,23 @@ module Replay
       era && map && title && version && (turns > 0)
     end
 
+    def load replay
+      replay.strip!
+
+      @nodes  = Timeout.timeout(30) { Weskit::WML::Parser.uri replay, :simple }
+      @replay = replay
+    end
+
     def playable_sides
       @playable_sides ||= @nodes.replay_start.side.reject { |s| s[:allow_player] == false }
+    end
+
+    def raise_connection_error
+      raise 'Replay could not be downloaded.'
+    end
+
+    def raise_parser_error replay, error
+      raise 'Replay could not be parsed.'
     end
 
     def titleize object

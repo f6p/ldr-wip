@@ -43,7 +43,7 @@ class Side < BaseModel
 
   def destroy
     revoke
-    delete
+    super
   end
 
   def place

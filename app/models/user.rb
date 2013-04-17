@@ -166,7 +166,7 @@ class User < BaseModel
     apply_rating_from_old_ladder
     self.initial_rating = rating
     self.import_status = true
-  rescue => e
+  rescue
     self.initial_rating = self.rating = 1500
     self.import_status = false ; true
   end

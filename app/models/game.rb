@@ -24,7 +24,7 @@ class Game < BaseModel
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :players, :through => :sides, :class_name => 'User'
   has_many :sides, :dependent => :destroy
-  has_one  :issue, :as => :issuable, :dependent => :destroy
+  has_one  :issue, :as => :issuable, :dependent => :delete
 
   validate :validate_loser, :validate_ownership, :validate_replay, :validate_sides_size
 

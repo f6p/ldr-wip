@@ -26,7 +26,7 @@ class Game < BaseModel
   has_many :sides, :dependent => :destroy
   has_one  :issue, :as => :issuable, :dependent => :destroy
 
-  validate :validate_loser, :validate_ownership, :validate_replay, :validate_scores, :validate_sides_size
+  validate :validate_loser, :validate_ownership, :validate_replay, :validate_sides_size
 
   after_validation :humanize_side_errors
 
@@ -298,13 +298,6 @@ class Game < BaseModel
   def validate_replay
     if parsed_replay && !parsed_replay.valid?
       errors.add :replay, 'is invalid'
-    end
-  end
-
-  def validate_scores
-    if teams
-      winner_teams_size = sides.collect(&:won?).count true
-      errors.add :base, 'Game should have only one winner' if winner_teams_size > 1
     end
   end
 

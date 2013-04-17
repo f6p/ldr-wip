@@ -42,7 +42,7 @@ class Game < BaseModel
   end
 
   def manageable_by? user
-    new_record? || (update_possible? and players.include? user)
+    new_record? || user.admin? || (update_possible? and players.include? user)
   rescue
     false
   end

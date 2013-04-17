@@ -13,6 +13,8 @@ module Replay
     end
 
     def initialize replay
+      replay.strip!
+
       @nodes  = Timeout.timeout(30) { Weskit::WML::Parser.uri replay, :simple }
       @replay = replay
     rescue SocketError, TimeoutError

@@ -96,7 +96,7 @@ module Replay
     def load replay
       replay.strip!
 
-      @nodes  = Timeout.timeout(30) { Weskit::WML::Parser.uri replay, :simple }
+      @nodes  = Timeout.timeout(300) { Weskit::WML::Parser.uri replay, :simple }
       @replay = replay
     end
 

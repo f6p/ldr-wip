@@ -127,6 +127,6 @@ class Side < BaseModel
   end
 
   def self.search_standings params
-    select('DISTINCT ON (sides.player_id) sides.player_id, sides.*').joins('RIGHT JOIN games ON sides.kind = games.kind').where('games.kind = ?', 'Competitive').reorder('sides.player_id, sides.rating DESC').search params
+    select('DISTINCT ON (sides.player_id) sides.player_id, sides.*').joins(:game).where('sides.kind = ? AND games.kind = ?', 'Competitive', 'Competitive').reorder('sides.player_id, sides.rating DESC').search params
   end
 end

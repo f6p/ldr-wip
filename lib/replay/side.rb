@@ -77,6 +77,7 @@ module Replay
         when /Elvish/     then 'Rebels'
         when /Orcish/     then 'Northerners'
         when /Skeleton/   then 'Undead'
+        when /Jundi/      then 'Khalifate'
       end
     end
 

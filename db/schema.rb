@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422072451) do
+ActiveRecord::Schema.define(:version => 20130422073542) do
 
   create_table "comments", :force => true do |t|
     t.integer  "author_id",        :null => false
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20130422072451) do
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
     t.float    "initial_volatility",       :default => 0.6,           :null => false
+    t.datetime "registered_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

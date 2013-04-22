@@ -144,7 +144,9 @@ class User < BaseModel
 
   def self.register nick, token, params
     user = find_or_new params[:nick]
+
     user.attributes = params.merge registered_defaults
+    user.registered_at = DateTime.now
 
     user.token_confirmation = token
     user.token_nick = nick

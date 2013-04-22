@@ -93,6 +93,14 @@ class User < BaseModel
     [initial_rating] + sides.competitive.unrevoked.collect(&:rating)
   end
 
+  def reset_rating!
+    self.rating           = initial_rating
+    self.rating_deviation = initial_rating_deviation
+    self.volatility       = initial_volatility
+
+    save
+  end
+
   def soft_save
     registered? ? save! : save!(:validate => false)
     self

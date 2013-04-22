@@ -42,7 +42,7 @@ class Game < BaseModel
   end
 
   def manageable_by? user
-    new_record? || user.admin? || (update_possible? and players.include? user)
+    new_record? || user.admin? || (update_possible? and has_registered_player? user)
   rescue
     false
   end
@@ -92,11 +92,21 @@ class Game < BaseModel
     super
   end
 
+  def detect_players_side player
+    sides.detect { |s| s.player == player }
+  end
+
   def filename
     file_id = "#{id}".rjust 7, '0'
     file_players = players.join ' '
 
     "#{file_id} #{map} #{file_players}".parameterize('-') + '.gz'
+  end
+
+  def has_registered_player? player
+    detect_players_side(player).registered?
+  rescue
+    false
   end
 
   def increase_downloads

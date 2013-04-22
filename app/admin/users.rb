@@ -34,7 +34,7 @@ ActiveAdmin.register User do
     column(:nick) { |u| nick u, admin_user_path(u) }
     column(:admin)
     column(:banned)
-    column(:created_at)
+    column(:registered_at)
     column(:current_sign_in_at)
 
     default_actions
@@ -47,7 +47,7 @@ ActiveAdmin.register User do
       row(:kind)
       row(:admin)
       row(:banned)
-      row(:created_at)
+      row(:registered_at)
       row(:current_sign_in_at)
     end
   end

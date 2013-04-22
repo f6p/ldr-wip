@@ -78,7 +78,7 @@ class Side < BaseModel
   end
 
   def revoke
-    unless game.revoked?
+    if registered? && !game.revoked?
       player.rating           -= delta(:rating)
       player.rating_deviation -= delta(:rating_deviation)
       player.volatility       -= delta(:volatility)
@@ -95,7 +95,7 @@ class Side < BaseModel
   end
 
   def unrevoke
-    if game.revoked?
+    if registered? && game.revoked?
       player.rating           += delta(:rating)
       player.rating_deviation += delta(:rating_deviation)
       player.volatility       += delta(:volatility)
